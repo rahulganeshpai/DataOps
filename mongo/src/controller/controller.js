@@ -1,4 +1,4 @@
-"use strict";
+import airports_model from "../models/airports";
 
 /**
  * Controller - Welcome
@@ -7,6 +7,9 @@
  */
 const welcome_route = async (_, res) => {
   try {
+    airports_model.find({}).then((airports) => {
+      console.log(airports);
+    });
     res.status(200).send("Welcome to Mongo Data Store");
   } catch (error) {
     res.status(500).send(error);

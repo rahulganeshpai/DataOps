@@ -6,6 +6,7 @@ import helmet from "helmet";
 import compression from "compression";
 import router from "../routes/routes";
 import generateEnv from "../../config/config";
+import route_middleware from "../middleware/route";
 
 /**
  * Class - Server
@@ -26,6 +27,9 @@ class Server {
     app.use(helmet());
     app.use(compression());
     app.use("/api/v1/", router);
+
+    //Custom Middelwares
+    app.use(route_middleware);
     return app;
   }
   /**

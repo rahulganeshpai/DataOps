@@ -7,5 +7,10 @@
 # build
 **/dist
 
+#files
+**.xls
+**.xlsx
+**.csv
+
 # misc
 .DS_Store

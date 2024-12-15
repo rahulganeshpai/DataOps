@@ -10,7 +10,8 @@
   "scripts": {
     "build-dev": "webpack",
     "build-prod": "webpack --config webpack.config.prod.js",
-    "debug": "npm run build-dev && npx nodemon --inspect ./dist/bundle.js",
+    "debug": "npx nodemon --exec babel-node --inspect app.js",
+    "debug-webpack": "npm run build-dev && npx nodemon --inspect ./dist/bundle.js",
     "dev": "npm run build-dev && npm run exec",
     "prod": "npm run build-prod && npm run exec",
     "exec": "node ./dist/bundle.js"
@@ -20,14 +21,17 @@
   "license": "ISC",
   "description": "Application to interacti with MongoDB",
   "dependencies": {
-    "axios": "^1.7.7",
     "compression": "^1.7.5",
     "cors": "^2.8.5",
     "express": "^4.21.1",
-    "helmet": "^8.0.0"
+    "helmet": "^8.0.0",
+    "mongoose": "^8.9.0",
+    "mongoose-int32": "^0.6.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.26.4",
     "@babel/core": "^7.26.0",
+    "@babel/node": "^7.26.0",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/plugin-transform-jscript": "^7.25.9",
     "@babel/plugin-transform-private-methods": "^7.25.9",
@@ -39,6 +43,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "nodemon": "^3.1.7",
     "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.2.0",
     "webpack-node-externals": "^3.0.0"
   }
 }
