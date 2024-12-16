@@ -58,6 +58,21 @@ const delete_all = async (_, res) => {
   }
 };
 
+/**
+ * Controller - Welcome
+ * @description
+ * Controller for Welcome Page
+ */
+const update_all = async (req, res) => {
+  try {
+    const update_docs = airports_model.updateMany({}, {"$set":req.body});
+    const result = await Promise.all([update_docs]);
+    console.log(result)
+    res.status(200).send(result);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
 
 /**
  * Function - Controller
@@ -69,7 +84,8 @@ const controller = () => {
     welcome: welcome,
     fetch_all: fetch_all,
     fetch_byid: fetch_byid,
-    delete_all: delete_all
+    delete_all: delete_all,
+    update_all: update_all,
   };
 };
 

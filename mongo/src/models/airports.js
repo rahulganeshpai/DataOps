@@ -21,7 +21,9 @@ const airports_schema = new Schema({
   home_link: String,
   wikipedia_link: String,
   keywords: String,
+  tags: [Schema.Types.Mixed],
 });
-const flights_db = connection.useDb('flights');
+
+const flights_db = connection.useDb("flights");
 const airports_model = flights_db.model("Airports", airports_schema);
 export default airports_model;
