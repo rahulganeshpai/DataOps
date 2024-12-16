@@ -7,6 +7,7 @@ import compression from "compression";
 import router from "../routes/routes";
 import generateEnv from "../../config/config";
 import route_middleware from "../middleware/route";
+import database from "./database";
 
 /**
  * Class - Server
@@ -38,21 +39,27 @@ class Server {
    * Method for initialising server
    */
   initialise() {
-    const PORT = generateEnv().PORT;
+    const { PORT, MONGO_URI, MONGO_PORT } = generateEnv();
     const app = this.#add_configurations();
-    const initialise = app.listen(PORT, () => {
+    const init_server = app.listen(PORT, () => {
       console.log(`Listening on Port: ${PORT}`);
     });
+
+    // Initialse MongoDB
+    database.initialise_connection(MONGO_URI, MONGO_PORT);
+
     //Server graceful exit
     process.on("SIGTERM", () => {
+      // Close MongoDB connection
+      database.close_connection();
       console.log("Closing http server");
-      initialise.close(() => {
+      init_server.close(() => {
         console.log("Http server closed");
         process.exit(0);
       });
       process.exit(0);
     });
-    return initialise;
+    return init_server;
   }
 }
 

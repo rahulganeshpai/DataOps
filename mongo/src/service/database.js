@@ -1,11 +1,23 @@
 import mongoose from "mongoose";
 
 class Database {
-  initialise_connection() {
-    mongoose
-      .connect("mongodb://localhost:27017")
-      .then((result) => console.log("connected"))
-      .catch((err) => console.log("error", err));
+  async initialise_connection(MONGO_URI, MONGO_PORT) {
+    try {
+      const URL = `${MONGO_URI}:${MONGO_PORT}`;
+      const connect = mongoose.connect(URL);
+      await Promise.all([connect]);
+    } catch (error) {
+      return { code: 500, message: `${error}` };
+    }
+  }
+  async close_connection(){
+    try {
+      const disconnect = mongoose.connection.close();
+      await Promise.all([disconnect]);
+    }
+    catch (error) {
+      return { code: 500, message: `${error}` };
+    }
   }
 }
 
