@@ -27,7 +27,7 @@ class Server {
     app.use(cors({ origin: "*" }));
     app.use(helmet());
     app.use(compression());
-    app.use("/api/v1/", router);
+    app.use("/aiports", router);
 
     //Custom Middelwares
     app.use(route_middleware);

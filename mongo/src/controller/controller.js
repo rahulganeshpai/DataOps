@@ -1,22 +1,9 @@
 import airports_model from "../models/airports";
 
 /**
- * Controller - Welcome
+ * Controller - Fetch All Documents
  * @description
- * Controller for Welcome Page
- */
-const welcome = async (_, res) => {
-  try {
-    res.status(200).send("Welcome to Mongo Data Store");
-  } catch (error) {
-    res.status(500).send(error);
-  }
-};
-
-/**
- * Controller - Welcome
- * @description
- * Controller for Welcome Page
+ * Controller for Fetching All Documents
  */
 const fetch_all = async (_, res) => {
   try {
@@ -29,9 +16,9 @@ const fetch_all = async (_, res) => {
 };
 
 /**
- * Controller - Welcome
+ * Controller - Fetch Documents by ID
  * @description
- * Controller for Welcome Page
+ * Controller for Fetching Documents by ID
  */
 const fetch_byid = async (req, res) => {
   try {
@@ -44,9 +31,9 @@ const fetch_byid = async (req, res) => {
 };
 
 /**
- * Controller - Welcome
+ * Controller - Delete All Documents
  * @description
- * Controller for Welcome Page
+ * Controller for Deleting All Documents
  */
 const delete_all = async (_, res) => {
   try {
@@ -59,9 +46,9 @@ const delete_all = async (_, res) => {
 };
 
 /**
- * Controller - Welcome
+ * Controller - Update All Documents
  * @description
- * Controller for Welcome Page
+ * Controller for Updating All Documents
  */
 const update_all = async (req, res) => {
   try {
@@ -77,11 +64,10 @@ const update_all = async (req, res) => {
 /**
  * Function - Controller
  * @description
- * Function containing all route controllers
+ * Function containing all route controllers for Airports
  */
 const controller = () => {
   return {
-    welcome: welcome,
     fetch_all: fetch_all,
     fetch_byid: fetch_byid,
     delete_all: delete_all,
