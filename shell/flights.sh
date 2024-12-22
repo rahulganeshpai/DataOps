@@ -1,8 +1,14 @@
 #!/bin/bash
 
-function download_data(){
-  curl -L -o "$PWD"/$1\
+# Download sample Datasets
+function download_data() {
+  curl -L -o "$PWD"/$1 \
     $2
+}
+
+# Create new mongodb user
+function create_user() {
+  mongosh --eval "db.createUser({user: '$1', pwd: '$2', roles: ['$3']})"
 }
 
 download_data "airline-dataset.zip" "https://www.kaggle.com/api/v1/datasets/download/iamsouravbanerjee/airline-dataset"

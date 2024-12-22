@@ -24,7 +24,7 @@ const airports_schema = new Schema({
   tags: [String],
 });
 
-airports_schema.index({ ident: 1 });
+airports_schema.index({ ident: 1 }, { unique: true });
 const flights_db = connection.useDb("flights");
 const airports_model = flights_db.model("Airports", airports_schema);
 export default airports_model;

@@ -1,17 +1,19 @@
 import airports_model from "../models/airports";
+import api from "../api/api";
 
 /**
  * Controller - Fetch All Documents
  * @description
  * Controller for Fetching All Documents
  */
-const fetch_all = async (_, res) => {
+const fetch_all = async (req, res) => {
   try {
-    const findall = airports_model.find({});
-    const result = await Promise.all([findall]);
-    res.status(200).send(result[0]);
+    const find_all = api().find({}, {}, airports_model);
+    const result = await Promise.all([find_all]);
+    res.status(200).send(result);
   } catch (error) {
-    res.status(500).send(error);
+    console.log(`${error}`);
+    res.status(500).send(`${error}`);
   }
 };
 
@@ -52,9 +54,9 @@ const delete_all = async (_, res) => {
  */
 const update_all = async (req, res) => {
   try {
-    const update_docs = airports_model.updateMany({}, {"$set":req.body});
+    const update_docs = airports_model.updateMany({}, { $set: req.body });
     const result = await Promise.all([update_docs]);
-    console.log(result)
+    console.log(result);
     res.status(200).send(result);
   } catch (error) {
     res.status(500).send(error);
@@ -66,7 +68,7 @@ const update_all = async (req, res) => {
  * @description
  * Function containing all route controllers for Airports
  */
-const controller = () => {
+const airports_controller = () => {
   return {
     fetch_all: fetch_all,
     fetch_byid: fetch_byid,
@@ -75,4 +77,4 @@ const controller = () => {
   };
 };
 
-export default controller;
+export default airports_controller;
