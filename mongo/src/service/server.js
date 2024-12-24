@@ -4,7 +4,8 @@ import express, { json } from "express";
 import cors from "cors";
 import helmet from "helmet";
 import compression from "compression";
-import router from "../routes/routes";
+import airport_route from "../routes/airports";
+import frequencies_route from "../routes/frequencies";
 import generateEnv from "../../config/config";
 import route_middleware from "../middleware/route";
 import database from "./database";
@@ -27,7 +28,8 @@ class Server {
     app.use(cors({ origin: "*" }));
     app.use(helmet());
     app.use(compression());
-    app.use("/airports", router);
+    app.use("/airports", airport_route);
+    app.use("/frequencies", frequencies_route);
 
     //Custom Middelwares
     app.use(route_middleware);
