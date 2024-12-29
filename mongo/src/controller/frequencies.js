@@ -1,5 +1,5 @@
 import frequencies_model from "../models/frequencies";
-import api from "../api/api";
+import api from "../api/mongo";
 
 /**
  * Controller - Fetch All Documents

@@ -1,15 +1,16 @@
 import airports_model from "../models/airports";
-import api from "../api/api";
+import mongo_api from "../api/mongo";
+import core_api from "../api/core";
 
 /**
  * Controller - Fetch All Documents
  * @description
  * Controller for Fetching All Documents
  */
-const fetch_all = async (req, res) => {
+const fetch_all = async (_, res) => {
   try {
-    const find_all = api().find({}, {}, airports_model);
-    const result = await Promise.all([find_all]);
+    const find_all = mongo_api().find({}, {}, airports_model);
+    const result = await core_api(find_all);
     res.status(200).send(result);
   } catch (error) {
     console.log(`${error}`);
